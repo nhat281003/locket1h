@@ -1,22 +1,27 @@
 import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ScreenController extends GetxController{
-
+  TextEditingController textEditingController = TextEditingController();
+  List listIndex = [];
+  List listFilePath = [];
+  RxInt indexListIndex =0.obs;
+  RxBool isVisible = false.obs;
+  String filePath = "";
   CameraController get to => Get.find();
   RxInt indexCam =0.obs;
+  RxBool indexFlash =false.obs;
    CameraController ? controller;
    List<CameraDescription> ?cameras;
    CameraDescription? currentCamera;
    CameraImage ? _currentImage;
-
   bool get isCameraInitialized => controller != null;
   bool get isCameraFrontFacing => currentCamera?.lensDirection == CameraLensDirection.front;
 
   Future<void> initializeCamera(index) async {
     cameras = await availableCameras();
-
-    controller = CameraController(cameras![index], ResolutionPreset.max);
+    controller = CameraController(cameras![index], ResolutionPreset.high);
     await controller?.initialize();
     controller?.startImageStream((CameraImage image) {
       _currentImage = image;
@@ -24,10 +29,22 @@ class ScreenController extends GetxController{
     });
   }
 
+List<String> item = [
+  "minh nhat nguyen",
+  "minh nhat nguyen",
+  "minh nhat nguyen",
+  "minh nhat nguyen",
+  "minh nhat nguyen",
+  "minh nhat nguyen",
+];
+
   @override
   void onInit() {
     super.onInit();
     initializeCamera(0);
+    for(int i = 0; i< item.length; i++){
+      listIndex.add(false);
+    }
   }
 
   @override
@@ -35,4 +52,6 @@ class ScreenController extends GetxController{
     controller?.dispose();
     super.onClose();
   }
+
+
 }

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:clone_locket/all_image/all_image_page.dart';
 import 'package:clone_locket/page_controller.dart';
+import 'package:clone_locket/screen/screen_camera_controller.dart';
 import 'package:clone_locket/screen/screen_camera_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -174,6 +177,15 @@ class PagePage extends GetWidget<Page2Controller>{
                 Expanded(child:
                 Stack(
                   children: [
+                    index > 5 ?
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(60),
+                      child:  Image.file(
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                        File(Get.find<ScreenController>().filePath),
+                      ),
+                    ):
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 16),
