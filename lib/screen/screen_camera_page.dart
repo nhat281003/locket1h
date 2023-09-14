@@ -489,7 +489,7 @@ class ScreenCamPage extends GetWidget<ScreenController>{
         final String filePath = join(appDirPath, '$timestamp.jpg');
         XFile? capturedImage = await controller.controller?.takePicture();
         final File imageFile = File(capturedImage!.path);
-        await imageFile.copy(filePath);
+         imageFile.copy(filePath);
         controller.filePath = filePath;
         print('Đã chụp ảnh: $filePath');
       }
