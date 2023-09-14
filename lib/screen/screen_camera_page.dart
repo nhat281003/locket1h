@@ -246,6 +246,8 @@ class ScreenCamPage extends GetWidget<ScreenController>{
                     splashColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(70),
                     onTap: () {
+                      controller.filePath="";
+                      controller.textEditingController.clear();
                       captureImage();
                       controller.isVisible.value =! controller.isVisible.value ;
                     },
@@ -272,7 +274,10 @@ class ScreenCamPage extends GetWidget<ScreenController>{
                   ):
                   InkWell(
                     onTap: (){
-                      Get.find<Page2Controller>().itemlock.add(ItemLock(image: controller.filePath, name: "nyminhnhat", content: controller.textEditingController.value.text.toString(), timeout: "1h"));
+                      Get.find<Page2Controller>().itemlock.insert(1,
+                          ItemLock(image: controller.filePath, name: "nyminhnhat", content: controller.textEditingController.value.text.toString(), timeout: "1h", isFile:true)
+                      );
+
                       Get.find<Page2Controller>().update();
                       Get.find<Page2Controller>().refresh();
                       controller.isVisible.value =! controller.isVisible.value ;

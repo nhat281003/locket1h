@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ScreenController extends GetxController{
@@ -9,6 +10,7 @@ class ScreenController extends GetxController{
   RxInt indexListIndex =0.obs;
   RxBool isVisible = false.obs;
   String filePath = "";
+  String contentee = "";
   CameraController get to => Get.find();
   RxInt indexCam =0.obs;
   RxBool indexFlash =false.obs;

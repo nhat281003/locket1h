@@ -1,15 +1,16 @@
 import 'dart:io';
-
 import 'package:clone_locket/all_image/all_image_page.dart';
 import 'package:clone_locket/page_controller.dart';
-import 'package:clone_locket/screen/screen_camera_controller.dart';
 import 'package:clone_locket/screen/screen_camera_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PagePage extends GetWidget<Page2Controller>{
+  @override
   final controller = Get.put(Page2Controller());
+
+   PagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -177,13 +178,13 @@ class PagePage extends GetWidget<Page2Controller>{
                 Expanded(child:
                 Stack(
                   children: [
-                    index > 5 ?
+                    controller.itemlock[index].isFile == true?
                     ClipRRect(
                       borderRadius: BorderRadius.circular(60),
                       child:  Image.file(
                         fit: BoxFit.fill,
                         width: double.infinity,
-                        File(Get.find<ScreenController>().filePath),
+                        File('${controller.itemlock[index].image}'),
                       ),
                     ):
                     Container(
@@ -228,8 +229,8 @@ class PagePage extends GetWidget<Page2Controller>{
                     ),
                     child: RichText(text:  TextSpan(
                         children: [
-                          TextSpan(text: "${controller.itemlock[index].name}", style:  TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500)),
-                          TextSpan(text: "  ${controller.itemlock[index].timeout}", style:  TextStyle(color: Colors.white38, fontSize: 18, fontWeight: FontWeight.w500)),
+                          TextSpan(text: "${controller.itemlock[index].name}", style:  const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500)),
+                          TextSpan(text: "  ${controller.itemlock[index].timeout}", style:  const TextStyle(color: Colors.white38, fontSize: 18, fontWeight: FontWeight.w500)),
                         ]
                     ),)
                 ),
@@ -263,9 +264,9 @@ class PagePage extends GetWidget<Page2Controller>{
                               index ==0 ?
                               const Icon(CupertinoIcons.chat_bubble, color: Colors.white38,size: 28,):
                               index ==2 ?
-                               Image.network("https://emojigraph.org/media/google/fire_1f525.png", width: 28, height: 28,):
+                              Icon(Icons.favorite, color: Colors.purpleAccent.shade700,size: 28,):
                               index ==3 ?
-                               Image.network("https://emojigraph.org/media/google/fire_1f525.png", width: 28, height: 28,):
+                              Icon(Icons.favorite, color: Colors.red.shade700,size: 28,):
                               index ==4 ?
                               const Icon(Icons.face_retouching_natural_rounded, color: Colors.white,size: 28,):
                               Icon(Icons.favorite, color: Colors.yellow.shade700,size: 28,),
@@ -276,7 +277,7 @@ class PagePage extends GetWidget<Page2Controller>{
                     ],
                   ),
                 ),
-                SizedBox(height: 40,)
+                const SizedBox(height: 40,)
 
 
               ],
