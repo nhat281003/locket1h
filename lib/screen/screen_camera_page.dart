@@ -276,16 +276,9 @@ class ScreenCamPage extends GetWidget<ScreenController>{
                       Get.find<Page2Controller>().update();
                       Get.find<Page2Controller>().refresh();
                       controller.isVisible.value =! controller.isVisible.value ;
-                      Get.showSnackbar(GetSnackBar(
-                        title: "Thông báo",
-                          messageText: const Text("Send Success", style: TextStyle(color: Colors.white, fontSize: 16),),
-                          snackPosition: SnackPosition.BOTTOM, // Vị trí của Toast
-                          duration: const Duration(seconds: 3), // Thời gian hiển thị
-                          backgroundColor:Colors.grey.shade600, // Màu nền
-                          borderRadius: 30, // Bo góc
-                          margin: const EdgeInsets.all(20), // Khoảng cách với viền màn hình
-                          padding: const EdgeInsets.all(15), // Khoảng cách nội dung với viền
-                      ));
+                      Get.showSnackbar(
+                          buildGetSnackBar()
+                      );
                       controller.update();
 
                     },
@@ -449,7 +442,7 @@ class ScreenCamPage extends GetWidget<ScreenController>{
                           const SizedBox(height: 4,),
                           Text(
                             index == 0?
-                            "All": "${controller.item[index]}",overflow: TextOverflow.ellipsis, maxLines: 1,style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Colors.white),)
+                            "All": controller.item[index],overflow: TextOverflow.ellipsis, maxLines: 1,style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Colors.white),)
                         ],
                       ),
                     ),
@@ -469,6 +462,19 @@ class ScreenCamPage extends GetWidget<ScreenController>{
       );
     },);
   }
+
+  GetSnackBar buildGetSnackBar() {
+    return GetSnackBar(
+                      title: "Thông báo",
+                        messageText: const Text("Send Success", style: TextStyle(color: Colors.white, fontSize: 16),),
+                        snackPosition: SnackPosition.BOTTOM, // Vị trí của Toast
+                        duration: const Duration(seconds: 3), // Thời gian hiển thị
+                        backgroundColor:Colors.grey.shade600, // Màu nền
+                        borderRadius: 30, // Bo góc
+                        margin: const EdgeInsets.all(20), // Khoảng cách với viền màn hình
+                        padding: const EdgeInsets.all(15), // Khoảng cách nội dung với viền
+                    );
+  }
   void captureImage() async {
     try {
       if (controller.controller != null && controller.controller!.value.isInitialized) {
@@ -486,6 +492,5 @@ class ScreenCamPage extends GetWidget<ScreenController>{
       print('Lỗi khi chụp ảnh: $e');
     }
   }
-  // Hiển thị ảnh vừa chụp
 
 }
