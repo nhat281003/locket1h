@@ -22,9 +22,5 @@ class Page2Controller extends GetxController{
     ItemLock(image: "image/daden.jpg", name: "Da đen", content: "nghiện",timeout: "1d"),
   ].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
 }

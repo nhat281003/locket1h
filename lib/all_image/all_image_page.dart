@@ -1,13 +1,13 @@
-import 'package:clone_locket/screen/screen_camera_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import 'all_image_controller.dart';
 
 class AllImagePage extends GetWidget<AllImageController>{
+  @override
   final controller= Get.put(AllImageController());
+
+   AllImagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class AllImagePage extends GetWidget<AllImageController>{
                    onTap:() {
                      Get.back();
                    },
-                   child: Icon(Icons.keyboard_arrow_up_rounded, color: Colors.white,size: 40,),
+                   child: const Icon(Icons.keyboard_arrow_up_rounded, color: Colors.white,size: 40,),
                  ),
                  SizedBox(
                    width: 240,
@@ -131,7 +131,7 @@ class AllImagePage extends GetWidget<AllImageController>{
            ),
            const SizedBox(height: 4,),
            GridView.builder(
-             physics: NeverScrollableScrollPhysics(),
+             physics: const NeverScrollableScrollPhysics(),
              shrinkWrap: true,
              itemCount: 40,
              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

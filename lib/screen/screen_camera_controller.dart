@@ -10,14 +10,13 @@ class ScreenController extends GetxController{
   RxInt indexListIndex =0.obs;
   RxBool isVisible = false.obs;
   String filePath = "";
-  String contentee = "";
+  String content2 = "";
   CameraController get to => Get.find();
   RxInt indexCam =0.obs;
   RxBool indexFlash =false.obs;
    CameraController ? controller;
    List<CameraDescription> ?cameras;
    CameraDescription? currentCamera;
-   CameraImage ? _currentImage;
   bool get isCameraInitialized => controller != null;
   bool get isCameraFrontFacing => currentCamera?.lensDirection == CameraLensDirection.front;
 
@@ -26,7 +25,6 @@ class ScreenController extends GetxController{
     controller = CameraController(cameras![index], ResolutionPreset.high);
     await controller?.initialize();
     controller?.startImageStream((CameraImage image) {
-      _currentImage = image;
       update();
     });
   }

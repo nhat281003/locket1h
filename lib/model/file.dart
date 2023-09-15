@@ -16,9 +16,9 @@ class ReqFile {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['name'] = name;
     data['data'] = this.data;
     return data;
   }

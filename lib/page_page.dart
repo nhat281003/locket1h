@@ -268,7 +268,12 @@ class PagePage extends GetWidget<Page2Controller>{
                               index ==3 ?
                               Icon(Icons.favorite, color: Colors.red.shade700,size: 28,):
                               index ==4 ?
-                              const Icon(Icons.face_retouching_natural_rounded, color: Colors.white,size: 28,):
+                             InkWell(
+                               onTap: (){
+
+                               },
+                               child:  const Icon(Icons.face_retouching_natural_rounded, color: Colors.white,size: 28,),
+                             ):
                               Icon(Icons.favorite, color: Colors.yellow.shade700,size: 28,),
                             );
                           },),

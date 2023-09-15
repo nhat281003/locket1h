@@ -5,13 +5,17 @@ import 'package:clone_locket/model/item_lock.dart';
 import 'package:clone_locket/page_controller.dart';
 import 'package:clone_locket/screen/screen_camera_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 class ScreenCamPage extends GetWidget<ScreenController>{
+  @override
   final controller = Get.put(ScreenController());
   static double size = 30;
+
+   ScreenCamPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -491,10 +495,14 @@ class ScreenCamPage extends GetWidget<ScreenController>{
         final File imageFile = File(capturedImage!.path);
          imageFile.copy(filePath);
         controller.filePath = filePath;
-        print('Đã chụp ảnh: $filePath');
+        if (kDebugMode) {
+          print('Đã chụp ảnh: $filePath');
+        }
       }
     } catch (e) {
-      print('Lỗi khi chụp ảnh: $e');
+      if (kDebugMode) {
+        print('Lỗi khi chụp ảnh: $e');
+      }
     }
   }
 
