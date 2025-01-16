@@ -31,6 +31,12 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
 #      - name: Deploy to Firebase
 #        run: firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
 #          --app <firebase-app-id> --token ${{ secrets.FIREBASE_TOKEN }}
